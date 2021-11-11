@@ -13,14 +13,14 @@ function App() {
         <Header />
 
         <Switch>
-          <Route path="/users/:userId">
-            <UserAdmin />
+          <Route path="/" exact>
+            <Home />
           </Route>
           <Route path="/add-user" exact>
             <AddUser />
           </Route>
-          <Route path="/" exact>
-            <Home />
+          <Route path="/users/:userid">
+            <UserAdmin />
           </Route>
         </Switch>
       </div>

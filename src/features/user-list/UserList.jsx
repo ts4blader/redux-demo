@@ -6,6 +6,7 @@ import { useHistory } from "react-router";
 
 const Item = ({ content }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   return (
     <div className={style.item}>
@@ -17,7 +18,14 @@ const Item = ({ content }) => {
         <p className={style.email}>{content.email}</p>
       </div>
       <div className={style.control}>
-        <button className={style.edit}>Edit</button>
+        <button
+          className={style.edit}
+          onClick={() => {
+            history.push(`/users/${content.id}`);
+          }}
+        >
+          Edit
+        </button>
         <button
           className={style.remove}
           onClick={() => dispatch(removeUser(content))}
