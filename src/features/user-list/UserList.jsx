@@ -1,8 +1,11 @@
 import React from "react";
 import style from "./UserList.module.css";
-import { users } from "../../data/users";
+import { useSelector, useDispatch } from "react-redux";
+import { removeUser } from "./UserSlice";
 
 const Item = ({ content }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className={style.item}>
       <div className={style.userAvatar}>
@@ -14,13 +17,20 @@ const Item = ({ content }) => {
       </div>
       <div className={style.control}>
         <button className={style.edit}>Edit</button>
-        <button className={style.remove}>Remove</button>
+        <button
+          className={style.remove}
+          onClick={() => dispatch(removeUser(content))}
+        >
+          Remove
+        </button>
       </div>
     </div>
   );
 };
 
-export default function UserList({ data }) {
+export default function UserList() {
+  const users = useSelector((state) => state.users);
+
   return (
     <div className={style.userList}>
       <div className={style.header}>
