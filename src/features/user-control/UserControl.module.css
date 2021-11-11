@@ -1,0 +1,55 @@
+.root{
+    margin: 5vh 0;
+    font-size: 2rem;
+}
+.container{
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+.title{
+    font-size:2em;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.field{
+    margin-bottom: 1em;
+}
+
+.field input{
+    width: 100%;
+    font-size: 1em;
+    padding: 0.3em 0.7em;
+    font-family: "Saira";
+}
+.field label{
+    font-size: 1.2em;
+    text-decoration: underline;
+    display: inline-block;
+    margin-bottom: 0.5em;
+}
+
+.field img{
+    width: 50%;
+}
+
+.random{
+    padding: 0.5em 1em;
+    color: white;
+    background: rgb(29, 103, 223);
+    width: max-content;
+    margin-bottom: 1em ;
+    cursor: pointer;
+}
+
+.submit{
+    all: unset;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    color: white;
+    background: rgb(29, 103, 223);
+    text-align: center;
+    font-size: 1.5em;
+    width: 50%;
+}

@@ -1,11 +1,14 @@
 import React from "react";
 import style from "./Header.module.css";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
     <header className={style.header}>
       <div className="container">
-        <h2 className={style.logo}>Redux App</h2>
+        <Link to="/">
+          <h2 className={style.logo}>Redux App</h2>
+        </Link>
         <p className={style.appName}>User management</p>
       </div>
 

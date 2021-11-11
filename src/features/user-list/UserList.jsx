@@ -2,6 +2,7 @@ import React from "react";
 import style from "./UserList.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeUser } from "./UserSlice";
+import { useHistory } from "react-router";
 
 const Item = ({ content }) => {
   const dispatch = useDispatch();
@@ -30,12 +31,15 @@ const Item = ({ content }) => {
 
 export default function UserList() {
   const users = useSelector((state) => state.users);
+  const history = useHistory();
 
   return (
     <div className={style.userList}>
       <div className={style.header}>
         <h3 className={style.title}>Users list</h3>
-        <div className={style.addBtn}>Add user</div>
+        <div className={style.addBtn} onClick={() => history.push("/add-user")}>
+          Add user
+        </div>
       </div>
       <div className={style.list}>
         {users.map((item, index) => {
