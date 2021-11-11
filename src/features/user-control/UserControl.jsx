@@ -4,6 +4,18 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { updateUser, addUser } from "../user-list/UserSlice";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup
+  .object({
+    username: yup.string().required("This field is required"),
+    email: yup
+      .string()
+      .email("This is not an valid email address")
+      .required("This field is required"),
+  })
+  .required();
 
 const initial = {
   username: "",
@@ -16,7 +28,9 @@ export default function UserControl({ content }) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -27,7 +41,7 @@ export default function UserControl({ content }) {
   const title = content ? "Edit User" : "Add User";
   const onSubmit = (data) => {
     if (content) {
-      dispatch(updateUser({ ...data, avatar: picture }));
+      dispatch(updateUser({ ...data, id: content.id, avatar: picture }));
       history.push("/");
     } else {
       dispatch(addUser({ ...data, avatar: picture }));
@@ -48,15 +62,19 @@ export default function UserControl({ content }) {
               {...register("username")}
               placeholder="Ex: John Doe"
             />
+            {errors && (
+              <p className={style.error}>{errors.username?.message}</p>
+            )}
           </div>
           <div className={style.field}>
             <label>Email</label> <br />
             <input
-              type="email"
+              type="text"
               defaultValue={email}
               {...register("email")}
               placeholder="Ex: johndoe@example.com"
             />
+            {errors && <p className={style.error}>{errors.email?.message}</p>}
           </div>
           <div className={style.field}>
             <label>Avatar</label> <br />

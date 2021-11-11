@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { users } from "../../data/users";
 
 const initialState = users.map((item, index) => {
-  return { ...item, id: "user" + index };
+  return { ...item, id: "user-" + index };
 });
 
 const userSlice = createSlice({
@@ -13,7 +13,7 @@ const userSlice = createSlice({
       state = action.payload;
     },
     addUser: (state, action) => {
-      state.push(action.payload);
+      state.push({ ...action.payload, id: "user-" + state.length });
     },
     updateUser: (state, action) => {
       let { id } = action.payload;
